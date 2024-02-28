@@ -23,42 +23,50 @@
     </style>
   </head>
   <body class="text-[text-font]">
-    <header class="container mx-auto px-[10px]">
-      <nav class="bg-[#0D6EFD0D] pt-[30px] pb-[400px]">
-        <div class="flex justify-between items-center">
-          <h5 class="text-[#403F3F] text-[25px] font-[700]">Ruhit</h5>
-          <button
-            class="py-[15px] px-[35px] bg-[#0D6EFD] font-bold text-[20px] text-[#FFFFFF] rounded-lg"
-          >
-            Sign Up
-          </button>
-        </div>
-        <section class="">
-            <div class="inside-text text-center w-[70%] mx-auto">
-              <h3 class="font-[700] text-center text-[65px]">
-                Apple Iphone 13 Pro Max
-              </h3>
-              <p class="text-[#706F6F] text-[18px] font-[400] mt-[24px] mb-[32px]">
-                There are many variations of passages of Lorem Ipsum available, but
-                the majority <br> have suffered alteration in some form, by injected
-                humou.
-              </p>
-              <button class="py-[15px] px-[35px] bg-[#0D6EFD] font-bold text-[20px] text-[#FFFFFF] rounded-lg">Buy Now</button>
+    <header class="">
+      <div class="bg-[#0D6EFD0D]">
+        <div class="container mx-auto px-[10px]">
+          <nav class=" pt-[30px] pb-[400px]">
+            <div class="flex justify-between items-center">
+              <h5 class="text-[#403F3F] text-[25px] font-[700]">Ruhit</h5>
+              <button
+                class="py-[15px] px-[35px] bg-[#0D6EFD] font-bold text-[20px] text-[#FFFFFF] rounded-lg"
+              >
+                Sign Up
+              </button>
             </div>
-          </section>
-      </nav>
+            <section class="">
+                <div class="inside-text text-center w-[70%] mx-auto">
+                  <h3 class="font-[700] text-center text-[65px]">
+                    Apple Iphone 13 Pro Max
+                  </h3>
+                  <p class="text-[#706F6F] text-[18px] font-[400] mt-[24px] mb-[32px]">
+                    There are many variations of passages of Lorem Ipsum available, but
+                    the majority <br> have suffered alteration in some form, by injected
+                    humou.
+                  </p>
+                  <button class="py-[15px] px-[35px] bg-[#0D6EFD] font-bold text-[20px] text-[#FFFFFF] rounded-lg">Buy Now</button>
+                </div>
+              </section>
+          </nav>
+        </div>
+      </div>
      
     <div class="flex justify-center -mt-[25%]">
         <img src="./image/heroImage.png" alt="">
     </div>
     <h3 class="text-[#100F0F] text-[35px] font-[600] text-center mb-[30px]">Search your phone</h3>
     <div class="text-center w-[60%] mx-auto flex justify-center">
-        <input class="w-[70%] bg-[#100F0F0D] py-[17px] pl-[50px] rounded-lg focus:outline-none" type="text" placeholder="Search your phone">
-        <button class="w-[28%] py-[17px] px-[38px] bg-[#0D6EFD] font-bold text-[20px] text-[#FFFFFF] rounded-lg">Search</button>
+        <input id="searchText" class="w-[70%] bg-[#100F0F0D] py-[17px] pl-[50px] rounded-lg focus:outline-none" type="text" placeholder="Search your phone">
+        <button onclick="searchProduct()" class="w-[28%] py-[17px] px-[38px] bg-[#0D6EFD] font-bold text-[20px] text-[#FFFFFF] rounded-lg">Search</button>
     </div>
     </header>
     <main class="container mx-auto px-[10px] mt-[30px]">
+        <div id="spinnerLoading" class="spinners flex justify-center hidden">
+            <span class="loading loading-ring loading-lg w-[15%] "></span>
+        </div>
         <div id="product-content" class="product-container grid grid-cols-1 lg:grid-cols-4 gap-[24px]">
+            
             <!-- <div class="card p-[25px] text-center border border-gray-300 space-y-4">
                 <div>
                     <img src="./image/heroImage.png" alt="">
@@ -69,6 +77,23 @@
                 <button class="py-[10px] px-[25px] bg-[#0D6EFD] text-white rounded-lg w-[50%] mx-auto">Show Details</button>
             </div> -->
         </div>
+        <div id="showButton" class="flex justify-center my-[40px] hidden">
+          <button class="py-[15px] px-[35px] bg-[#0D6EFD] font-bold text-[20px] text-[#FFFFFF] rounded-lg">Show All</button>
+        </div>
+        <!-- You can open the modal using ID.showModal() method -->
+        <dialog id="my_show_modal" class="modal">
+          <div class="modal-box w-[50%]">
+            <div class="modal-action">
+                <form method="dialog">
+                  <!-- if there is a button, it will close the modal -->
+                  <button class="btn">X</button>
+                </form>
+              </div>
+            <div id="detailsContainer">
+               
+            </div>
+          </div>
+        </dialog>
     </main>
     <footer></footer>
     <script src="./js/index.js"></script>
