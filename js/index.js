@@ -1,4 +1,8 @@
 
+const containerPhone = document.getElementById("product-content");
+const erroeMessage = document.getElementById('erroeMessage');
+const showButton = document.getElementById("showButton");
+let productSlug = '';
 const spinners = (spinnersLoad=true)=>{
     const spinnerLoading = document.getElementById("spinnerLoading");
     if(spinnersLoad === true){
@@ -7,23 +11,39 @@ const spinners = (spinnersLoad=true)=>{
         spinnerLoading.classList.add("hidden")
     }
 }
-const phoneLoading = async(product)=>{
+const phoneLoading = async(product, showAll)=>{
+    productSlug = product;
     spinners(true)
+       try{
         const phoneload = await fetch(`https://openapi.programming-hero.com/api/phones?search=${product}`);
-    const data = await phoneload.json();
-    showDisplay(data.data)
+        const data = await phoneload.json();
+        
+        if(data.status){
+            erroeMessage.classList.add("hidden")
+            showDisplay(data.data, showAll)
+        }else{
+            errorMessage(product)
+        }
+       }catch(error){
+        console.log("error")
+       }    
 
 }
 
-const showDisplay = (data)=>{
-    const showButton = document.getElementById("showButton");
+const showDisplay = (data, showAll)=>{
+    
     if(data.length >= 12){
         showButton.classList.remove("hidden")
-        data = data.slice(0, 5)
+        if(!showAll){
+            data = data.slice(0, 6)
+        }else{
+            data
+            showButton.classList.add("hidden")
+        }
     }else{
         showButton.classList.add("hidden")
     }
-    const containerPhone = document.getElementById("product-content");
+    
     containerPhone.innerHTML = '';
     data.forEach(ele => {
         let div = document.createElement("div");
@@ -78,5 +98,18 @@ const searchProduct = ()=>{
     const valueInputs = valueSearch.value;
     phoneLoading(valueInputs);
     valueInputs.value = "";
+}
+
+const errorMessage = (datas)=>{
+    showButton.classList.add("hidden");
+    containerPhone.innerHTML = ''
+    erroeMessage.classList.remove("hidden");
+    erroeMessage.innerText = `This Product Not Found Your Are Search "${datas}"`;
+    console.log(datas)
+    spinners(false)
+}
+
+const showAllData = (showAll)=>{
+    phoneLoading(productSlug, showAll)
 }
 phoneLoading("iphone");

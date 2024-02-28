@@ -65,7 +65,10 @@
         <div id="spinnerLoading" class="spinners flex justify-center hidden">
             <span class="loading loading-ring loading-lg w-[15%] "></span>
         </div>
-        <div id="product-content" class="product-container grid grid-cols-1 lg:grid-cols-4 gap-[24px]">
+        <div>
+          <h4 id="erroeMessage" class="text-gray-400 text-4xl text-center py-28 hidden"></h4>
+        </div>
+        <div id="product-content" class="product-container grid grid-cols-1 lg:grid-cols-3 gap-[24px]">
             
             <!-- <div class="card p-[25px] text-center border border-gray-300 space-y-4">
                 <div>
@@ -78,7 +81,7 @@
             </div> -->
         </div>
         <div id="showButton" class="flex justify-center my-[40px] hidden">
-          <button class="py-[15px] px-[35px] bg-[#0D6EFD] font-bold text-[20px] text-[#FFFFFF] rounded-lg">Show All</button>
+          <button onclick="showAllData(true)" class="py-[15px] px-[35px] bg-[#0D6EFD] font-bold text-[20px] text-[#FFFFFF] rounded-lg">Show All</button>
         </div>
         <!-- You can open the modal using ID.showModal() method -->
         <dialog id="my_show_modal" class="modal">
